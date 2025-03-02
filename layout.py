@@ -34,10 +34,10 @@ class Row(View):
     def get_height(self):
         return self.__height
 
-    def draw(self, x, y):
+    def draw(self, x, y, canvas):
         offset = y
         for view in self.__views:
-            view.draw(x, offset)
+            view.draw(x, offset, canvas)
             offset += view.get_width()
     
 class Layout(View):
@@ -73,8 +73,8 @@ class Layout(View):
     def get_height(self):
         return self.__height
 
-    def draw(self, x, y):
+    def draw(self, x, y, canvas):
         offset = x
         for view in self.__views:
-            view.draw(offset, y)
+            view.draw(offset, y, canvas)
             offset += view.get_height()

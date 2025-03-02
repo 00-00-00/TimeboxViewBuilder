@@ -1,4 +1,3 @@
-from canvas import Canvas
 from views.view import View
 
 # Define the segments for each digit (0-9) in a 3x5 matrix
@@ -56,16 +55,15 @@ digits = {
 }
 
 class DigitView(View):
-      def __init__(self, value: int, colour: int, canvas: Canvas):
-            super().__init__(canvas)
+      def __init__(self, value: int, colour: int):
             self.value = value
             self.colour = colour
             self._matrix = digits[self.value]
       
-      def draw(self, x, y):
+      def draw(self, x, y, canvas):
             for i, row in enumerate(self._matrix):
                   for j, val in enumerate(row):
-                        if x + i >= len(self.canvas.matrix) or y + j >= len(self.canvas.matrix[0]):
+                        if x + i >= len(canvas.matrix) or y + j >= len(canvas.matrix[0]):
                                 continue
 
-                        self.canvas.matrix[x + i][y + j] = val * self.colour
+                        canvas.matrix[x + i][y + j] = val * self.colour
