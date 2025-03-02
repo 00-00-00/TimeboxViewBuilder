@@ -14,15 +14,11 @@ digitView2 = DigitView('8', 255, canvas)
 rowSpace = SpaceView(True, 0, canvas)
 
 
-row1 = Row(canvas)
-row1.addViews([digitView2, columnSpace, digitView2, columnSpace, digitView2])
-row2 = Row(canvas)
-row2.addViews([rowSpace])
-row3 = Row(canvas)
-row3.addViews([digitView, columnSpace, digitView2])
-
-layout = Layout(canvas)
-layout.addViews([row1, row2, row3])
+layout = Layout([
+    Row([digitView2, columnSpace, digitView2, columnSpace, digitView2]),
+    Row([rowSpace]),
+    Row([digitView, columnSpace, digitView2])
+    ])
 
 layout.draw(0,0)
 canvas.draw()

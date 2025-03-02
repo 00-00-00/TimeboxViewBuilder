@@ -2,11 +2,13 @@ from canvas import Canvas
 from views.view import View
 
 class Row(View):
-    def __init__(self, canvas):
-        self._canvas = canvas
-        self._matrix = []
+    def __init__(self):
         self.__height = 0
         self.__width = 0
+
+    def __init__(self, views):
+        self.__views = views
+        self.__measure()
     
     def addViews(self, views):
         self.__views = views
@@ -39,11 +41,13 @@ class Row(View):
             offset += view.get_width()
     
 class Layout(View):
-    def __init__(self, canvas):
-        self._canvas = canvas
-        self._matrix = []
+    def __init__(self):
         self.__height = 0
         self.__width = 0
+
+    def __init__(self, rows):
+        self.__views = rows
+        self.__measure()
 
     def addViews(self, rows):
         self.__views = rows
