@@ -57,13 +57,13 @@ digits = {
 
 class DigitView(View):
       def __init__(self, value: int, colour: int, canvas: Canvas):
+            super().__init__(canvas)
             self.value = value
-            self.canvas = canvas
             self.colour = colour
-            self.__matrix = digits[self.value]
+            self._matrix = digits[self.value]
       
       def draw(self, x, y):
-            for i, row in enumerate(self.__matrix):
+            for i, row in enumerate(self._matrix):
                   for j, val in enumerate(row):
                         if x + i >= len(self.canvas.matrix) or y + j >= len(self.canvas.matrix[0]):
                                 continue
