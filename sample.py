@@ -1,21 +1,28 @@
+from datetime import date
 from layout import Row
 from layout import Layout
 from views.digitView import DigitView
 from views.spacers import SpaceView
-from transformer.pngTransformer import PngTransformer
 from viewRender import ViewRenderer
 
-digitView = DigitView('9', 0xFF0000)
-columnSpace = SpaceView(False, 0x000000)
-digitView2 = DigitView('8', 0xFFFFFF)
-rowSpace = SpaceView(True, 0x000000)
 
-fourColumn = [columnSpace] * 4
+today = date.today().strftime("%d-%m")
+
+dayTen = DigitView(today[0], 0xFF0000)
+columnSpace = SpaceView(False, 0x000000)
+dayUnit = DigitView(today[1], 0xFFFFFF)
+rowSpace = SpaceView(True, 0x000000)
+monthTen = DigitView(today[0], 0xFF0000)
+columnSpace = SpaceView(False, 0x000000)
+monthUnit = DigitView(today[1], 0xFFFFFF)
+
+divider = SpaceView(isRow=False, colour=0x50C878)
+fourColumn = [columnSpace] * 2
 
 layout = Layout([
-    Row([columnSpace, columnSpace, columnSpace, columnSpace, digitView2, columnSpace, digitView2]),
+    Row([columnSpace, divider] + fourColumn + [dayTen, columnSpace, dayUnit]),
     Row([rowSpace]),
-    Row(fourColumn  + [digitView, columnSpace, digitView2])
+    Row( fourColumn * 2 + [monthTen, columnSpace, monthUnit])
     ])
 
 ViewRenderer.render(layout)

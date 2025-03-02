@@ -1,12 +1,12 @@
 from views.view import View
 
-columnSpace = [[0],
-               [0],
-               [0],
-               [0],
-               [0]]
+columnSpace = [[1],
+               [1],
+               [1],
+               [1],
+               [1]]
 
-rowSpace = [[0, 0, 0]]
+rowSpace = [[1, 1, 1]]
 
 
 class SpaceView(View):
