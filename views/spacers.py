@@ -1,18 +1,18 @@
 from views.view import View
 
-columnSpace = [[1],
-               [1],
-               [1],
-               [1],
-               [1]]
+# columnSpace = [[1],
+#                [1],
+#                [1],
+#                [1],
+#                [1]]
 
-rowSpace = [[1, 1, 1]]
+# rowSpace = [[1, 1, 1]]
 
 
 class SpaceView(View):
-    def __init__(self, isRow: bool, colour: int):
+    def __init__(self, height: int, width:int, colour: int):
         self.colour = colour
-        self._matrix = rowSpace if isRow else columnSpace
+        self._matrix = [[1] * width for _ in range(height)]
 
     def draw(self, x, y, canvas):
         for i, row in enumerate(self._matrix):

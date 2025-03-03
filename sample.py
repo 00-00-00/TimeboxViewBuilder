@@ -4,25 +4,33 @@ from layout import Layout
 from views.digitView import DigitView
 from views.spacers import SpaceView
 from viewRender import ViewRenderer
+from views.weekView import WeekView
+from views.monthProgressView import MonthProgressView
 
 
 today = date.today().strftime("%d-%m")
 
-dayTen = DigitView(today[0], 0xFF0000)
-columnSpace = SpaceView(False, 0x000000)
+dayTen = DigitView(today[0], 0xFFFFFF)
+columnSpace = SpaceView(height=5, width=1, colour=0x000000)
 dayUnit = DigitView(today[1], 0xFFFFFF)
-rowSpace = SpaceView(True, 0x000000)
-monthTen = DigitView(today[0], 0xFF0000)
-columnSpace = SpaceView(False, 0x000000)
-monthUnit = DigitView(today[1], 0xFFFFFF)
+rowSpace = SpaceView(height = 1, width=11, colour=0x000000)
 
-divider = SpaceView(isRow=False, colour=0x50C878)
-fourColumn = [columnSpace] * 2
+day_number = date.today().isoweekday()
+weekView = WeekView(day_number,0x4CAF50)
+
+month = date.today().month
+progressMonthView = MonthProgressView(
+    month,
+    completeColour = 0x4CAF50, 
+    currentMonthColour = 0x2196F3
+    )
 
 layout = Layout([
-    Row([columnSpace, divider] + fourColumn + [dayTen, columnSpace, dayUnit]),
-    Row([rowSpace]),
-    Row( fourColumn * 2 + [monthTen, columnSpace, monthUnit])
-    ])
+    Row([SpaceView(height=2, width=2, colour=0x000000), weekView]),
+    Row([SpaceView(height=1, width=11, colour=0x000000)]),
+    Row([dayTen, SpaceView(1,1, 0x000000), dayUnit]),
+    Row([SpaceView(height=1, width=11, colour=0x000000)]),
+    Row([progressMonthView])
+])
 
 ViewRenderer.render(layout)
