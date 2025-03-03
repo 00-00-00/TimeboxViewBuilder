@@ -16,12 +16,12 @@ dayUnit = DigitView(today[1], 0xFFFFFF)
 rowSpace = SpaceView(height = 1, width=11, colour=0x000000)
 
 day_number = date.today().isoweekday()
-weekView = WeekView(day_number,0x4CAF50)
+weekView = WeekView(day_number,0x00C000)
 
 month = date.today().month
 progressMonthView = MonthProgressView(
     month,
-    completeColour = 0x4CAF50, 
+    completeColour = 0x00C000, 
     currentMonthColour = 0x2196F3
     )
 
