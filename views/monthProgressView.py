@@ -12,6 +12,6 @@ class MonthProgressView(View):
             matrix[0][i] = completeColour
         
         if month < 12:
-            matrix[0][month] = currentMonthColour
+            matrix[0][month - 1] = currentMonthColour
             
         super().set_matrix(matrix)

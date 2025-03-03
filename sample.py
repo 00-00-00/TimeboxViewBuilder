@@ -19,6 +19,7 @@ day_number = date.today().isoweekday()
 weekView = WeekView(day_number,0x00C000)
 
 month = date.today().month
+print("Month is " + str(month))
 progressMonthView = MonthProgressView(
     month,
     completeColour = 0x00C000, 
