@@ -4,6 +4,7 @@ from layout import Layout
 from views.digitView import DigitView
 from views.spacers import SpaceView
 from transformer.pngTransformer import PngTransformer
+from pathlib import Path
 
 class ViewRenderer:
 
@@ -17,4 +18,6 @@ class ViewRenderer:
         print("RGB Image saved as output.png")
 
         imageFile = PngTransformer().generateFromCanvas(canvas)
-        imageFile.save("output.png")
+        script_dir = Path(__file__).resolve().parent
+        filePath = script_dir / "output.png"
+        imageFile.save(filePath)
